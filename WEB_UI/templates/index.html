@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>YOLO26 自行车检测</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="card">
+    <p class="eyebrow">YOLO26 · Flask</p>
+    <h1>自行车目标检测</h1>
+    <p>上传 JPG、PNG 或 BMP 图片，系统将输出自行车边界框、置信度及坐标。</p>
+    <form method="post" enctype="multipart/form-data">
+      <input name="image" type="file" accept="image/jpeg,image/png,image/bmp" required>
+      <button type="submit">开始检测</button>
+    </form>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    {% if result %}
+      <h2>检测结果（{{ rows|length }} 个目标）</h2>
+      <img class="result" src="data:image/jpeg;base64,{{ result }}" alt="检测结果">
+      <table><thead><tr><th>类别</th><th>置信度</th><th>坐标 (x1, y1, x2, y2)</th></tr></thead>
+        <tbody>{% for row in rows %}<tr><td>{{ row.label }}</td><td>{{ '%.4f'|format(row.confidence) }}</td><td>{{ row.x1 }}, {{ row.y1 }}, {{ row.x2 }}, {{ row.y2 }}</td></tr>{% endfor %}</tbody>
+      </table>
+    {% endif %}
+  </main>
+</body>
+</html>

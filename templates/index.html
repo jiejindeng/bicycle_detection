@@ -1,0 +1,5 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><title>自行车检测系统</title><style>body{font-family:system-ui;margin:3rem auto;max-width:900px;background:#f7f8fa;color:#1d2129}.card{padding:2rem;background:white;border-radius:12px;box-shadow:0 2px 12px #d9dce3}button{padding:.7rem 1.2rem;background:#e95718;border:0;border-radius:6px;color:white;font-weight:700}img{max-width:100%;margin-top:1.5rem}.error{color:#c00}</style></head>
+<body><main class="card"><h1>基于 YOLO 的自行车检测系统</h1><p>上传图片，系统将标注检测到的自行车。</p><form method="post" enctype="multipart/form-data"><input type="file" name="image" accept="image/*" required><button type="submit">开始检测</button></form>{% if error %}<p class="error">{{ error }}</p>{% endif %}{% if result %}<p>检测完成：{{ count }} 个目标</p><img src="data:image/jpeg;base64,{{ result }}" alt="检测结果">{% endif %}</main></body>
+</html>
