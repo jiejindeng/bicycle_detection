@@ -1,0 +1,5 @@
+train: VOCData/bicycle_dataset/VOdevkit/train/images
+val: VOCData/bicycle_dataset/VOdevkit/val/images
+test: VOCData/bicycle_dataset/VOdevkit/test/images
+nc: 1
+names: ['Bicycle']
